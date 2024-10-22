@@ -1,0 +1,86 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="form-container">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="nombres">Nombres</label>
+      <div class="input-container">
+        <input id="nombres" formControlName="nombres" placeholder="Write your name" />
+      </div>
+      <div *ngIf="userForm.get('nombres')?.invalid && submitted">
+        <small>Este campo es obligatorio.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="apellidos">Apellidos</label>
+      <div class="input-container">
+        <input id="apellidos" formControlName="apellidos" placeholder="Write your lastname" />
+      </div>
+      <div *ngIf="userForm.get('apellidos')?.invalid && submitted">
+        <small>Este campo es obligatorio.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="identificacion">Identificación</label>
+      <div class="input-container">
+        <input id="identificacion" formControlName="identificacion" placeholder="Identification Number (Up to 10 digits)" />
+      </div>
+      <div *ngIf="userForm.get('identificacion')?.invalid && submitted">
+        <small *ngIf="userForm.get('identificacion')?.hasError('required')">Este campo es obligatorio.</small>
+        <small *ngIf="userForm.get('identificacion')?.hasError('pattern')">La identificación solo debe contener números.</small>
+        <small *ngIf="userForm.get('identificacion')?.hasError('maxlength')">La identificación no puede tener más de 10 caracteres.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="fechaNacimiento">Fecha de nacimiento</label>
+      <div class="input-container">
+        <input type="date" id="fechaNacimiento" formControlName="fechaNacimiento" />
+      </div>
+      <div *ngIf="userForm.get('fechaNacimiento')?.invalid && submitted">
+        <small>Este campo es obligatorio.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="genero">Género</label>
+        <select id="genero" formControlName="genero">
+          <option value="">Seleccione</option>
+          <option value="masculino">Masculino</option>
+          <option value="femenino">Femenino</option>
+          <option value="otro">Otro</option>
+        </select>
+      <div *ngIf="userForm.get('genero')?.invalid && submitted">
+        <small>Este campo es obligatorio.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="pais">País</label>
+      <select id="pais" formControlName="pais">
+        <option value="">Seleccione</option>
+        <option value="Colombia">Colombia</option>
+        <option value="Brasil">Brasil</option>
+        <option value="Panamá">Panamá</option>
+        <!-- Agrega más opciones según sea necesario -->
+      </select>
+      <div *ngIf="userForm.get('pais')?.invalid && submitted">
+        <small>Este campo es obligatorio.</small>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit">Enviar</button>
+</form>
+
+<div class="modal" [class.show]="showModal">
+  <div class="modal-content">
+    <h2>Formulario Enviado</h2>
+    <p>¡Formulario enviado exitosamente!</p>
+    <button (click)="closeModal()">Cerrar</button>
+  </div>
+</div>

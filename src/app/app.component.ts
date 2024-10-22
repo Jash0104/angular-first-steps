@@ -1,29 +1,17 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
+import { PrincipalComponent } from './principal/principal.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule],
+  imports: [PrincipalComponent, HeaderComponent, FooterComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = '01-first-steps';
-  name = "Juan Acosta";
-  imgRoute = "emisionsCO2.jpeg"
-  disabled = false
-  handleClick() {
-    console.log(`Hola ${this.name}`)
-  }
-  increment() {
-    this.count++
-  }
-  decrement() {
-    this.count--
-  }
-  nombreCompleto = ""
-  count = 0
 
 }
